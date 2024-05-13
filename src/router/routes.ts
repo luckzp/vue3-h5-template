@@ -1,18 +1,18 @@
 import Layout from "@/layout/index.vue";
 import type { RouteRecordRaw } from "vue-router";
-import Demo from "@/views/demo/index.vue";
+import Home from "@/views/home/index.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "root",
     component: Layout,
-    redirect: { name: "Demo" },
+    redirect: { name: "Home" },
     children: [
       {
-        path: "demo",
-        name: "Demo",
-        component: Demo,
+        path: "home",
+        name: "Home",
+        component: Home,
         meta: {
           title: "主页"
         }
@@ -33,8 +33,24 @@ const routes: Array<RouteRecordRaw> = [
           title: "关于",
           noCache: true
         }
+      },
+      {
+        path: "message",
+        name: "Message",
+        component: () => import("@/views/message/index.vue"),
+        meta: {
+          title: "消息",
+          noCache: true
+        }
       }
     ]
+  },
+  {
+    path: "/city",
+    component: () => import("@/views/city/index.vue"),
+    // meta: {
+    //   hideTabBar: true
+    // }
   }
 ];
 

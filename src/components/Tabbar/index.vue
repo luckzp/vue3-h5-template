@@ -1,11 +1,6 @@
 <template>
-  <van-tabbar v-model="active" :placeholder="true" :route="true" fixed>
-    <van-tabbar-item
-      v-for="(item, index) in tabbarData"
-      :key="index"
-      :icon="item.icon"
-      :to="item.to"
-    >
+  <van-tabbar v-model="active" active-color="#fe893a" :placeholder="true" :route="true" fixed>
+    <van-tabbar-item v-for="(item, index) in tabbarData" :key="index" :icon="item.icon" :to="item.to">
       {{ item.title }}
     </van-tabbar-item>
   </van-tabbar>
@@ -18,23 +13,30 @@ const active = ref(0);
 const tabbarData = reactive([
   {
     icon: "wap-home-o",
-    title: "主页",
+    title: "首页",
     to: {
-      name: "Demo"
+      name: "Home"
     }
   },
   {
-    icon: "gem-o",
-    title: "工具",
+    icon: "star-o",
+    title: "收藏",
     to: {
       name: "Tools"
     }
   },
   {
-    icon: "user-o",
-    title: "关于",
+    icon: "orders-o",
+    title: "订单",
     to: {
       name: "About"
+    }
+  },
+  {
+    icon: "chat-o",
+    title: "消息",
+    to: {
+      name: "Message"
     }
   }
 ]);
