@@ -36,10 +36,14 @@
             </div>
         </template>
     </div>
+    <div class="submitButton">
+        <van-button color="#7232dd" size="small" class="w-full mx-8">开始搜索</van-button>
+    </div>
+
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import useCityStore from '@/store/modules/city'
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
@@ -75,7 +79,16 @@ const onConfirm = (value) => {
 }
 
 const homeStore = useHomeStore()
-const { hotSuggests } = storeToRefs(homeStore)
+const hotSuggests = computed(() => homeStore.hotSuggests)
 </script>
 
-<style scoped></style>
+<style lang="less" scoped>
+.submitButton {
+    margin-right: 10px;
+    margin-left: 10px;
+
+    :deep(.van-button) {
+        border-radius: 15px
+    }
+}
+</style>

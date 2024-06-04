@@ -11,3 +11,20 @@ export function getHomeHotSuggests(): Promise<ListResult> {
       method: "get",
     });
 }
+
+export function getHomeCategories(): Promise<ListResult> {
+  return http.request({
+    url: "/home/categories",
+    method: "get",
+  });
+}
+
+export function getHomeHouselist(currentPage): Promise<ListResult> {
+  return http.request({
+    url: "/home/houselist",
+    method: "get",
+    params: {
+      page: currentPage
+    }
+  });
+}
