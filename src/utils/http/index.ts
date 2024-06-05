@@ -51,10 +51,9 @@ class Http {
         // 与后端协定的返回字段
         const { errcode, data } = response.data;
         // 判断请求是否成功
-        const isSuccess =
-        data ;
+        const isSuccess = data ;
         if (isSuccess) {
-          return data;
+          return response.data;
         } else {
           // 处理请求错误
           // showFailToast(message);

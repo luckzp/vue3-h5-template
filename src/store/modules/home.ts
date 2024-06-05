@@ -1,4 +1,4 @@
-import {getHomeHotSuggests, getHomeCategories} from '@/api/mock/home'
+import {getHomeHotSuggests, getHomeCategories, getHomeHouselist} from '@/api/mock/home'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -7,21 +7,33 @@ const useHomeStore = defineStore("home", () => {
   const hotSuggests = ref(null)
   const categories = ref(null)
   const currentPage = ref(1)
+  const houselist = ref([])
 
   async function fetchHotSuggestData() {
-    hotSuggests.value = await getHomeHotSuggests()
+    const res = await getHomeHotSuggests()
+    hotSuggests.value = res.data
   }
 
 
   async function fetchCategoriesData() {
-    categories.value = await getHomeCategories()
+    const res = await getHomeCategories()
+    categories.value = res.data
+  }
+
+  async function fetchHouselistData() {
+    const res = await getHomeHouselist(currentPage.value)
+    this.houselist.push(...res.data)
+    currentPage.value++  
   }
   
   return {
     hotSuggests,
     categories,
+    houselist,
+    currentPage,
     fetchCategoriesData,
-    fetchHotSuggestData
+    fetchHotSuggestData,
+    fetchHouselistData
   }
   })
   
